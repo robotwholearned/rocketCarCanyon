@@ -8,6 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MyScene : SKScene
+@interface MyScene : SKScene <SKPhysicsContactDelegate>
+{
+    CGRect screenRect;
+    CGFloat screenHeight;
+    CGFloat screenWidth;
+}
+@property (nonatomic) SKSpriteNode * rocketCar;
 
 @end

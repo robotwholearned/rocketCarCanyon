@@ -11,10 +11,10 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
+-(void)viewWillLayoutSubviews
 {
-    [super viewDidLoad];
-
+    [super viewWillLayoutSubviews];
+    
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
@@ -35,7 +35,11 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    } else {
         return UIInterfaceOrientationMaskAll;
+    }
 }
 
 - (void)didReceiveMemoryWarning
