@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5379243218A9E12200F5A4B5 /* CoreMotion.framework */; };
 		53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDD18A7171F00DC6258 /* Foundation.framework */; };
 		53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */; };
 		53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE118A7171F00DC6258 /* UIKit.framework */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5379243218A9E12200F5A4B5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		53F71CDA18A7171F00DC6258 /* RocketCarCanyon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketCarCanyon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53F71CDD18A7171F00DC6258 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,10 +69,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */,
 				53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */,
-				53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */,
-				53F71CE418A7171F00DC6258 /* SpriteKit.framework in Frameworks */,
 				53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */,
+				53F71CE418A7171F00DC6258 /* SpriteKit.framework in Frameworks */,
+				53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +112,7 @@
 		53F71CDC18A7171F00DC6258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5379243218A9E12200F5A4B5 /* CoreMotion.framework */,
 				53F71CDD18A7171F00DC6258 /* Foundation.framework */,
 				53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */,
 				53F71CE118A7171F00DC6258 /* UIKit.framework */,
@@ -486,6 +490,7 @@
 				53F71D1818A7172000DC6258 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		53F71D1918A7172000DC6258 /* Build configuration list for PBXNativeTarget "RocketCarCanyonTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +499,7 @@
 				53F71D1B18A7172000DC6258 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

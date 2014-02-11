@@ -7,13 +7,17 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <CoreMotion/CoreMotion.h>
 
-@interface MyScene : SKScene <SKPhysicsContactDelegate>
+@interface MyScene : SKScene <SKPhysicsContactDelegate, UIAccelerometerDelegate>
 {
     CGRect screenRect;
     CGFloat screenHeight;
     CGFloat screenWidth;
+    double currentMaxAccelX;
+    double currentMaxAccelY;
 }
+@property (strong, nonatomic) CMMotionManager *motionManager;
 @property (nonatomic) SKSpriteNode * rocketCar;
 
 @end
