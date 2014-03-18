@@ -11,7 +11,6 @@
 		53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDD18A7171F00DC6258 /* Foundation.framework */; };
 		53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */; };
 		53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE118A7171F00DC6258 /* UIKit.framework */; };
-		53F71CE418A7171F00DC6258 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE318A7171F00DC6258 /* SpriteKit.framework */; };
 		53F71CEA18A7171F00DC6258 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F71CE818A7171F00DC6258 /* InfoPlist.strings */; };
 		53F71CEC18A7171F00DC6258 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F71CEB18A7171F00DC6258 /* main.m */; };
 		53F71CF018A7171F00DC6258 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F71CEF18A7171F00DC6258 /* AppDelegate.m */; };
@@ -25,6 +24,7 @@
 		53F71D0918A7172000DC6258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE118A7171F00DC6258 /* UIKit.framework */; };
 		53F71D1118A7172000DC6258 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F71D0F18A7172000DC6258 /* InfoPlist.strings */; };
 		53F71D1318A7172000DC6258 /* RocketCarCanyonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F71D1218A7172000DC6258 /* RocketCarCanyonTests.m */; };
+		F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE318A7171F00DC6258 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,10 +69,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */,
 				5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */,
 				53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */,
 				53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */,
-				53F71CE418A7171F00DC6258 /* SpriteKit.framework in Frameworks */,
 				53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
