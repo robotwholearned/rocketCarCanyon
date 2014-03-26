@@ -19,12 +19,17 @@
         
         /* Setup your scene here */
         self.backgroundColor = [SKColor colorWithRed:0.33 green:0.18 blue:0 alpha:1.0];
+        self.physicsWorld.gravity = CGVectorMake(0,0);
+        self.physicsWorld.contactDelegate = self;
         
         self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(25, 25)];
         self.rocketCar.position = CGPointMake(CGRectGetMidX(self.frame),(CGRectGetMinY(self.frame) + self.rocketCar.size.height));
-        
+        self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
+        self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
+        self.rocketCar.physicsBody.collisionBitMask = wallCategory;
         [self addChild:self.rocketCar];
         
+        self.walls = [NSMutableArray new];
         self.motionManager = [[CMMotionManager alloc] init];
         self.motionManager.accelerometerUpdateInterval = 0.2;
         [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error)
@@ -36,6 +41,7 @@
              }
              
          }];
+        [self startWalls];
     }
     return self;
 }
@@ -80,9 +86,51 @@
     /* Called when a touch begins */
 }
 
--(void)startCar
+-(void)startWalls
 {
+    SKSpriteNode *wall = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(25, 25)];
     
+    int startPosition = [self getRandomNumberBetween:wall.size.width to:self.size.width/3];
+    wall.position = CGPointMake(startPosition, wall.size.height/2);
+    NSLog(@"wall position: (%f,%f) ",  wall.position.x, wall.position.y);
+    NSLog(@"view: (%f,%f) ",  self.size.width, self.size.height);
+    wall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:wall.size];
+    wall.physicsBody.categoryBitMask = wallCategory;
+    wall.physicsBody.collisionBitMask = rocketCarCategory;
+    
+    [self.walls addObject:wall];
+    [self addChild:self.walls[0]];
+    
+    for(int i = 1; i < (self.size.height-wall.size.height)/wall.size.height; i++)
+    {
+        NSLog(@"Make %i block", i);
+        SKSpriteNode *nextWall = [SKSpriteNode spriteNodeWithColor:[self getRandomColor] size:CGSizeMake(25, 25)];
+        nextWall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:nextWall.size];
+        nextWall.physicsBody.categoryBitMask = wallCategory;
+        nextWall.physicsBody.collisionBitMask = rocketCarCategory;
+        
+        SKSpriteNode *previousWall = self.walls[i-1];
+        int nextX = [self getRandomNumberBetween:previousWall.position.x-10 to:previousWall.position.x+10];
+        int nextY = i*nextWall.size.height+(nextWall.size.height/2);
+        
+        nextWall.position = CGPointMake(nextX, nextY);
+        
+        NSLog(@"wall position: (%f,%f) ",  nextWall.position.x, nextWall.position.y);
+        [self.walls addObject:nextWall];
+        [self addChild:nextWall];
+    }
+}
+- (int)getRandomNumberBetween:(int)from to:(int)to
+{
+    return (int)from + arc4random() % (to - from + 1);
+}
+-(UIColor *)getRandomColor
+{
+    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
+    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
+    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
+    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+    return color;
 }
 
 @end
