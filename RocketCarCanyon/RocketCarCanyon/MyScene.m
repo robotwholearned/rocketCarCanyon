@@ -10,7 +10,8 @@
 
 @implementation MyScene
 
--(id)initWithSize:(CGSize)size {
+-(id)initWithSize:(CGSize)size
+{
     if (self = [super initWithSize:size])
     {
         screenRect = [[UIScreen mainScreen] bounds];
@@ -79,13 +80,10 @@
     
     self.rocketCar.position = CGPointMake(newX, newY);
 }
-
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     /* Called when a touch begins */
 }
-
 -(void)startWalls
 {
     SKSpriteNode *wall = [self makeWall];
@@ -139,5 +137,4 @@
     UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
     return color;
 }
-
 @end
