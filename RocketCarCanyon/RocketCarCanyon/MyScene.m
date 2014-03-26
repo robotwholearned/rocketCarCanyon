@@ -88,38 +88,45 @@
 
 -(void)startWalls
 {
-    SKSpriteNode *wall = [SKSpriteNode spriteNodeWithColor:[UIColor brownColor] size:CGSizeMake(25, 25)];
+    SKSpriteNode *wall = [self makeWall];
     
     int startPosition = [self getRandomNumberBetween:wall.size.width to:self.size.width/3];
     wall.position = CGPointMake(startPosition, wall.size.height/2);
     NSLog(@"wall position: (%f,%f) ",  wall.position.x, wall.position.y);
     NSLog(@"view: (%f,%f) ",  self.size.width, self.size.height);
-    wall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:wall.size];
-    wall.physicsBody.categoryBitMask = wallCategory;
-    wall.physicsBody.collisionBitMask = rocketCarCategory;
     
     [self.walls addObject:wall];
     [self addChild:self.walls[0]];
     
-    for(int i = 1; i < (self.size.height-wall.size.height)/wall.size.height; i++)
+    for(int i = 1; i < (self.size.height)/wall.size.height; i++)
     {
         NSLog(@"Make %i block", i);
-        SKSpriteNode *nextWall = [SKSpriteNode spriteNodeWithColor:[self getRandomColor] size:CGSizeMake(25, 25)];
-        nextWall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:nextWall.size];
-        nextWall.physicsBody.categoryBitMask = wallCategory;
-        nextWall.physicsBody.collisionBitMask = rocketCarCategory;
-        
+        SKSpriteNode *nextWall = [self makeWall];
+        SKSpriteNode *sisterWall = [self makeWall];
         SKSpriteNode *previousWall = self.walls[i-1];
         int nextX = [self getRandomNumberBetween:previousWall.position.x-10 to:previousWall.position.x+10];
         int nextY = i*nextWall.size.height+(nextWall.size.height/2);
-        
+        int sisterX = nextX+300;
         nextWall.position = CGPointMake(nextX, nextY);
-        
+        sisterWall.position = CGPointMake(sisterX, nextY);
         NSLog(@"wall position: (%f,%f) ",  nextWall.position.x, nextWall.position.y);
+
         [self.walls addObject:nextWall];
+        [self addChild:sisterWall];
         [self addChild:nextWall];
     }
 }
+-(SKSpriteNode *)makeWall
+{
+    SKSpriteNode *wall = [SKSpriteNode spriteNodeWithColor:[self getRandomColor] size:CGSizeMake(25, 25)];
+    wall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:wall.size];
+    wall.physicsBody.categoryBitMask = wallCategory;
+    wall.physicsBody.collisionBitMask = rocketCarCategory;
+    wall.physicsBody.dynamic = NO;
+    return wall;
+}
+
+/*Helper Methods*/
 - (int)getRandomNumberBetween:(int)from to:(int)to
 {
     return (int)from + arc4random() % (to - from + 1);
