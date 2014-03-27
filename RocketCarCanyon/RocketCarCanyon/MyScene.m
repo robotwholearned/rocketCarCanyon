@@ -24,14 +24,20 @@
         self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
         
+        self.walls = [NSMutableArray new];
+        self.sisterWalls = [NSMutableArray new];
+        [self startWalls];
+        
         self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(25, 25)];
-        self.rocketCar.position = CGPointMake(CGRectGetMidX(self.frame),(CGRectGetMinY(self.frame) + self.rocketCar.size.height));
+        NSLog(@"Starting x's: %f, %f", ((SKSpriteNode *)self.walls[0]).position.x , ((SKSpriteNode *)self.sisterWalls[0]).position.x );
+        float rocketCarStartX = (((SKSpriteNode *)self.sisterWalls[0]).position.x + ((SKSpriteNode *)self.walls[0]).position.x )/2;
+        NSLog(@"Starting x: %f", rocketCarStartX);
+        self.rocketCar.position = CGPointMake(rocketCarStartX,(CGRectGetMinY(self.frame) + self.rocketCar.size.height));
         self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
         self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
         self.rocketCar.physicsBody.collisionBitMask = wallCategory;
         [self addChild:self.rocketCar];
         
-        self.walls = [NSMutableArray new];
         self.motionManager = [[CMMotionManager alloc] init];
         self.motionManager.accelerometerUpdateInterval = 0.2;
         [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error)
@@ -43,7 +49,6 @@
              }
              
          }];
-        [self startWalls];
     }
     return self;
 }
