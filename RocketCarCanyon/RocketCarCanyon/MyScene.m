@@ -15,7 +15,7 @@
     if (self = [super initWithSize:size])
     {
         //screenRect = [[UIScreen mainScreen] bounds];
-
+        
         screenHeight = self.size.height;
         screenWidth = self.size.width;
         
@@ -51,7 +51,7 @@
 {
     currentMaxAccelX = 0;
     currentMaxAccelY = 0;
-
+    
     if(fabs(acceleration.x) > fabs(currentMaxAccelX))
     {
         currentMaxAccelX = acceleration.x;
@@ -106,19 +106,27 @@
     
     for(int i = 1; i < screenHeight/firstWall.size.height; i++)
     {
-        NSLog(@"Make block %i", i);
+        //NSLog(@"Make block %i", i);
         SKSpriteNode *nextWall = [self makeWall];
         SKSpriteNode *nextSisterWall = [self makeWall];
         
         SKSpriteNode *previousWall = self.walls[i-1];
         
         int nextX = [self getRandomNumberBetween:previousWall.position.x-10 to:previousWall.position.x+10];
+        if (nextX < nextWall.size.width/2)
+        {
+            nextX +=10;
+        }
         int nextY = i*nextWall.size.height+(nextWall.size.height/2);
         int nextSisterX = nextX+screenWidth/2;
+        if (nextSisterX > screenWidth-(nextWall.size.width/2)) {
+            nextSisterX -= 10;
+            nextX -= 10;
+        }
         
         nextWall.position = CGPointMake(nextX, nextY);
         nextSisterWall.position = CGPointMake(nextSisterX, nextY);
-
+        
         [self.walls addObject:nextWall];
         [self.sisterWalls addObject:nextSisterWall];
         [self addChild:nextSisterWall];
