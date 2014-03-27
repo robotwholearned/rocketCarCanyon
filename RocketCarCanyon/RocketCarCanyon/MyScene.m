@@ -62,14 +62,6 @@ const float WALL_WIDTH = 25.0;
     }
     return self;
 }
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
-    
-    self.lastSpawnTimeInterval += timeSinceLast;
-    if (self.lastSpawnTimeInterval > 1) {
-        self.lastSpawnTimeInterval = 0;
-        [self updateWalls];
-    }
-}
 -(void)outputAccelertionData:(CMAcceleration)acceleration
 {
     currentMaxAccelX = 0;
@@ -106,12 +98,21 @@ const float WALL_WIDTH = 25.0;
 
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
     self.lastUpdateTimeInterval = currentTime;
-    if (timeSinceLast > 1) { // more than a second since last update
-        timeSinceLast = 1.0 / 60.0;
+    if (timeSinceLast > 0.5) // more than a second since last update
+    {
+        timeSinceLast = 0.5 / 60.0;
         self.lastUpdateTimeInterval = currentTime;
     }
-    
     [self updateWithTimeSinceLastUpdate:timeSinceLast];
+}
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast
+{
+    self.lastSpawnTimeInterval += timeSinceLast;
+    if (self.lastSpawnTimeInterval > 0.5)
+    {
+        self.lastSpawnTimeInterval = 0;
+        [self updateWalls];
+    }
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
