@@ -120,7 +120,7 @@
     wall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:wall.size];
     wall.physicsBody.categoryBitMask = wallCategory;
     wall.physicsBody.collisionBitMask = rocketCarCategory;
-    wall.physicsBody.dynamic = NO;
+    //wall.physicsBody.dynamic = NO;
     return wall;
 }
 
