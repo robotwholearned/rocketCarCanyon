@@ -9,6 +9,9 @@
 #import <SpriteKit/SpriteKit.h>
 #import <CoreMotion/CoreMotion.h>
 
+extern const float WALL_HEIGHT;
+extern const float WALL_WIDTH;
+
 // These constanst are used to define the physics interactions between physics bodies in the scene.
 static const uint32_t rocketCarCategory =  0x1 << 0;
 static const uint32_t wallCategory      =  0x1 << 1;
