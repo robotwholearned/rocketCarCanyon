@@ -11,6 +11,13 @@
 const float WALL_HEIGHT = 25.0;
 const float WALL_WIDTH = 25.0;
 
+@interface MyScene ()
+
+@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
+@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+
+@end
+
 @implementation MyScene
 
 -(id)initWithSize:(CGSize)size
@@ -55,6 +62,14 @@ const float WALL_WIDTH = 25.0;
     }
     return self;
 }
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
+    
+    self.lastSpawnTimeInterval += timeSinceLast;
+    if (self.lastSpawnTimeInterval > 1) {
+        self.lastSpawnTimeInterval = 0;
+        [self updateWalls];
+    }
+}
 -(void)outputAccelertionData:(CMAcceleration)acceleration
 {
     currentMaxAccelX = 0;
@@ -88,20 +103,42 @@ const float WALL_WIDTH = 25.0;
     newY = MIN(adjustedMaxYAccel, maxX);
     
     self.rocketCar.position = CGPointMake(newX, newY);
+
+    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
+    self.lastUpdateTimeInterval = currentTime;
+    if (timeSinceLast > 1) { // more than a second since last update
+        timeSinceLast = 1.0 / 60.0;
+        self.lastUpdateTimeInterval = currentTime;
+    }
     
-    //get all walls
-    //    self.walls
-    //    self.sisterWalls
-    //move each wall down 1 height
-    //    ((SKSpriteNode *)[self.walls objectAtIndex:0]).position.y -= (WALL_HEIGHT);
-    //add walls at top
-    //remove walls off screen
-    
-    
+    [self updateWithTimeSinceLastUpdate:timeSinceLast];
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     /* Called when a touch begins */
+}
+-(void)updateWalls
+{
+    //infinitie walls
+    [self addWallsAtLastWalls:[self.walls count]];
+    
+    for (SKSpriteNode *wall in self.walls)
+    {
+        SKAction *moveDownByHeight = [SKAction moveTo:CGPointMake(wall.position.x, wall.position.y - WALL_HEIGHT) duration:0];
+        [wall runAction:moveDownByHeight];
+    }
+    for (SKSpriteNode *wall in self.sisterWalls)
+    {
+        SKAction *moveDownByHeight = [SKAction moveTo:CGPointMake(wall.position.x, wall.position.y - WALL_HEIGHT) duration:0];
+        [wall runAction:moveDownByHeight];
+    }
+    
+    //remove walls off screen
+    [[self.walls objectAtIndex:0] removeFromParent];
+    [self.walls removeObjectAtIndex:0];
+    
+    [[self.sisterWalls objectAtIndex:0] removeFromParent];
+    [self.sisterWalls removeObjectAtIndex:0];
 }
 -(void)startWalls
 {
@@ -125,31 +162,35 @@ const float WALL_WIDTH = 25.0;
     for(int i = 1; i < screenHeight/WALL_HEIGHT; i++)
     {
         //NSLog(@"Make block %i", i);
-        SKSpriteNode *nextWall = [self makeWall];
-        SKSpriteNode *nextSisterWall = [self makeWall];
-        
-        SKSpriteNode *previousWall = self.walls[i-1];
-        
-        int nextX = [self getRandomNumberBetween:previousWall.position.x-10 to:previousWall.position.x+10];
-        if (nextX < WALL_WIDTH/2)
-        {
-            nextX +=10;
-        }
-        int nextY = i*WALL_HEIGHT+(WALL_HEIGHT/2);
-        int nextSisterX = nextX+screenWidth/2;
-        if (nextSisterX > screenWidth-(WALL_WIDTH/2)) {
-            nextSisterX -= 10;
-            nextX -= 10;
-        }
-        
-        nextWall.position = CGPointMake(nextX, nextY);
-        nextSisterWall.position = CGPointMake(nextSisterX, nextY);
-        
-        [self.walls addObject:nextWall];
-        [self.sisterWalls addObject:nextSisterWall];
-        [self addChild:nextSisterWall];
-        [self addChild:nextWall];
+        [self addWallsAtLastWalls:i];
     }
+}
+-(void)addWallsAtLastWalls:(int)index
+{
+    SKSpriteNode *nextWall = [self makeWall];
+    SKSpriteNode *nextSisterWall = [self makeWall];
+    
+    SKSpriteNode *previousWall = self.walls[index-1];
+    
+    int nextX = [self getRandomNumberBetween:previousWall.position.x-10 to:previousWall.position.x+10];
+    if (nextX < WALL_WIDTH/2)
+    {
+        nextX +=10;
+    }
+    int nextY = (index*WALL_HEIGHT)+(WALL_HEIGHT/2);
+    int nextSisterX = nextX+screenWidth/2;
+    if (nextSisterX > screenWidth-(WALL_WIDTH/2)) {
+        nextSisterX -= 10;
+        nextX -= 10;
+    }
+    
+    nextWall.position = CGPointMake(nextX, nextY);
+    nextSisterWall.position = CGPointMake(nextSisterX, nextY);
+    
+    [self.walls addObject:nextWall];
+    [self.sisterWalls addObject:nextSisterWall];
+    [self addChild:nextSisterWall];
+    [self addChild:nextWall];
 }
 -(SKSpriteNode *)makeWall
 {
