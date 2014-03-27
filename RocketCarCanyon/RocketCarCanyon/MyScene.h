@@ -16,7 +16,7 @@ static const uint32_t wallCategory      =  0x1 << 1;
 
 @interface MyScene : SKScene <SKPhysicsContactDelegate, UIAccelerometerDelegate>
 {
-    CGRect screenRect;
+    CGRect  screenRect;
     CGFloat screenHeight;
     CGFloat screenWidth;
     double currentMaxAccelX;
@@ -25,5 +25,6 @@ static const uint32_t wallCategory      =  0x1 << 1;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (nonatomic) SKSpriteNode *rocketCar;
 @property (strong, nonatomic) NSMutableArray *walls;
+@property (strong, nonatomic) NSMutableArray *sisterWalls;
 
 @end

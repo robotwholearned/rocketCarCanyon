@@ -14,9 +14,10 @@
 {
     if (self = [super initWithSize:size])
     {
-        screenRect = [[UIScreen mainScreen] bounds];
-        screenHeight = screenRect.size.height;
-        screenWidth = screenRect.size.width;
+        //screenRect = [[UIScreen mainScreen] bounds];
+
+        screenHeight = self.size.height;
+        screenWidth = self.size.width;
         
         /* Setup your scene here */
         self.backgroundColor = [SKColor colorWithRed:0.33 green:0.18 blue:0 alpha:1.0];
@@ -86,31 +87,41 @@
 }
 -(void)startWalls
 {
-    SKSpriteNode *wall = [self makeWall];
+    SKSpriteNode *firstWall = [self makeWall];
+    SKSpriteNode *firstSisterWall = [self makeWall];
     
-    int startPosition = [self getRandomNumberBetween:wall.size.width to:self.size.width/3];
-    wall.position = CGPointMake(startPosition, wall.size.height/2);
-    NSLog(@"wall position: (%f,%f) ",  wall.position.x, wall.position.y);
-    NSLog(@"view: (%f,%f) ",  self.size.width, self.size.height);
+    int startPosition = [self getRandomNumberBetween:firstWall.size.width to:screenWidth/3];
+    firstWall.position = CGPointMake(startPosition, firstWall.size.height/2);
+    firstSisterWall.position = CGPointMake(startPosition+screenWidth/2, firstSisterWall.size.height/2);
     
-    [self.walls addObject:wall];
-    [self addChild:self.walls[0]];
+    NSLog(@"first wall position: (%f,%f) ",  firstWall.position.x, firstWall.position.y);
+    NSLog(@"first sister wall position: (%f,%f) ",  firstSisterWall.position.x, firstSisterWall.position.y);
+    NSLog(@"view: (%f,%f) ",  screenWidth, screenHeight);
     
-    for(int i = 1; i < (self.size.height)/wall.size.height; i++)
+    [self.walls addObject:firstWall];
+    [self.sisterWalls addObject:firstSisterWall];
+    
+    [self addChild:firstWall];
+    [self addChild:firstSisterWall];
+    
+    for(int i = 1; i < screenHeight/firstWall.size.height; i++)
     {
-        NSLog(@"Make %i block", i);
+        NSLog(@"Make block %i", i);
         SKSpriteNode *nextWall = [self makeWall];
-        SKSpriteNode *sisterWall = [self makeWall];
+        SKSpriteNode *nextSisterWall = [self makeWall];
+        
         SKSpriteNode *previousWall = self.walls[i-1];
+        
         int nextX = [self getRandomNumberBetween:previousWall.position.x-10 to:previousWall.position.x+10];
         int nextY = i*nextWall.size.height+(nextWall.size.height/2);
-        int sisterX = nextX+300;
+        int nextSisterX = nextX+screenWidth/2;
+        
         nextWall.position = CGPointMake(nextX, nextY);
-        sisterWall.position = CGPointMake(sisterX, nextY);
-        NSLog(@"wall position: (%f,%f) ",  nextWall.position.x, nextWall.position.y);
+        nextSisterWall.position = CGPointMake(nextSisterX, nextY);
 
         [self.walls addObject:nextWall];
-        [self addChild:sisterWall];
+        [self.sisterWalls addObject:nextSisterWall];
+        [self addChild:nextSisterWall];
         [self addChild:nextWall];
     }
 }
@@ -120,7 +131,7 @@
     wall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:wall.size];
     wall.physicsBody.categoryBitMask = wallCategory;
     wall.physicsBody.collisionBitMask = rocketCarCategory;
-    //wall.physicsBody.dynamic = NO;
+    wall.physicsBody.dynamic = NO;
     return wall;
 }
 
