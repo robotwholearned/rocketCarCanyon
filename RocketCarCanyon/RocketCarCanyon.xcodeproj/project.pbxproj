@@ -25,6 +25,7 @@
 		53F71D1118A7172000DC6258 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F71D0F18A7172000DC6258 /* InfoPlist.strings */; };
 		53F71D1318A7172000DC6258 /* RocketCarCanyonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F71D1218A7172000DC6258 /* RocketCarCanyonTests.m */; };
 		F062EEF618E5CB8C009D052A /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F062EEF518E5CB8C009D052A /* UIImage+ImageEffects.m */; };
+		F062EEFA18E5CC23009D052A /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F062EEF918E5CC23009D052A /* MenuScene.m */; };
 		F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE318A7171F00DC6258 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		53F71D1218A7172000DC6258 /* RocketCarCanyonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RocketCarCanyonTests.m; sourceTree = "<group>"; };
 		F062EEF418E5CB8B009D052A /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "third.party/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		F062EEF518E5CB8C009D052A /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "third.party/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		F062EEF818E5CC23009D052A /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
+		F062EEF918E5CC23009D052A /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				53F71CF418A7171F00DC6258 /* Main_iPad.storyboard */,
 				53F71CF718A7171F00DC6258 /* ViewController.h */,
 				53F71CF818A7171F00DC6258 /* ViewController.m */,
+				F062EEF818E5CC23009D052A /* MenuScene.h */,
+				F062EEF918E5CC23009D052A /* MenuScene.m */,
 				53F71CFA18A7171F00DC6258 /* MyScene.h */,
 				53F71CFB18A7171F00DC6258 /* MyScene.m */,
 				53F71CFF18A7171F00DC6258 /* Images.xcassets */,
@@ -282,6 +287,7 @@
 				53F71CFC18A7171F00DC6258 /* MyScene.m in Sources */,
 				F062EEF618E5CB8C009D052A /* UIImage+ImageEffects.m in Sources */,
 				53F71CF918A7171F00DC6258 /* ViewController.m in Sources */,
+				F062EEFA18E5CC23009D052A /* MenuScene.m in Sources */,
 				53F71CF018A7171F00DC6258 /* AppDelegate.m in Sources */,
 				53F71CEC18A7171F00DC6258 /* main.m in Sources */,
 			);
