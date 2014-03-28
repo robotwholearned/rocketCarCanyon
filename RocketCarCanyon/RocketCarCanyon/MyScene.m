@@ -185,13 +185,6 @@ const float WALL_DELTA = 50;
     }
     float nextSisterWidth = screenWidth - (nextWidth+screenWidth/2);//nextX+screenWidth/2;
     
-//    if (nextSisterWidth >= (screenWidth - WALL_DELTA))
-//    {
-//        NSLog(@"3: nextSisterWidth: %f", nextSisterWidth);
-//        nextSisterWidth = screenWidth - (WALL_DELTA*2);
-//        nextWidth = screenWidth - (nextSisterWidth+screenWidth/2);
-//    }
-    
     SKSpriteNode *nextWall = [self makeWallWithWidth:nextWidth];
     SKSpriteNode *nextSisterWall = [self makeWallWithWidth:nextSisterWidth];
 
