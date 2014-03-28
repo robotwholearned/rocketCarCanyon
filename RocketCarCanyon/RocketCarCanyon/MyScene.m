@@ -10,7 +10,7 @@
 
 const float WALL_HEIGHT = 25.0;
 //const float WALL_WIDTH = 25.0;
-const float WALL_DELTA = 50;
+const float WALL_DELTA = 10;
 
 @interface MyScene ()
 
