@@ -95,15 +95,15 @@ const float WALL_WIDTH = 25.0;
     newY = MIN(adjustedMaxYAccel, maxX);
     
     self.rocketCar.position = CGPointMake(newX, newY);
-
-    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
-    self.lastUpdateTimeInterval = currentTime;
-    if (timeSinceLast > 0.5) // more than a second since last update
-    {
-        timeSinceLast = 0.5 / 60.0;
+    
+        CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
         self.lastUpdateTimeInterval = currentTime;
-    }
-    [self updateWithTimeSinceLastUpdate:timeSinceLast];
+        if (timeSinceLast > 0.5) // more than a second since last update
+        {
+            timeSinceLast = 0.5 / 60.0;
+            self.lastUpdateTimeInterval = currentTime;
+        }
+        [self updateWithTimeSinceLastUpdate:timeSinceLast];
 }
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast
 {
@@ -120,8 +120,8 @@ const float WALL_WIDTH = 25.0;
 }
 -(void)updateWalls
 {
-    //infinitie walls
-    [self addWallsAtLastWalls:[self.walls count]];
+    //infiniti walls
+    [self addWallsAtLastWalls:(int)[self.walls count]];
     
     for (SKSpriteNode *wall in self.walls)
     {
@@ -143,16 +143,20 @@ const float WALL_WIDTH = 25.0;
 }
 -(void)startWalls
 {
-    SKSpriteNode *firstWall = [self makeWall];
-    SKSpriteNode *firstSisterWall = [self makeWall];
     
-    int startPosition = [self getRandomNumberBetween:WALL_WIDTH to:screenWidth/3];
-    firstWall.position = CGPointMake(startPosition, WALL_HEIGHT/2);
-    firstSisterWall.position = CGPointMake(startPosition+screenWidth/2, WALL_HEIGHT/2);
+    int randomSeed = [self getRandomNumberBetween:25 to:screenWidth/3];
     
-    NSLog(@"first wall position: (%f,%f) ",  firstWall.position.x, firstWall.position.y);
-    NSLog(@"first sister wall position: (%f,%f) ",  firstSisterWall.position.x, firstSisterWall.position.y);
-    NSLog(@"view: (%f,%f) ",  screenWidth, screenHeight);
+    NSLog(@"Random seed: %i", randomSeed);
+    
+    SKSpriteNode *firstWall = [self makeWallWithWidth:randomSeed];
+    SKSpriteNode *firstSisterWall = [self makeWallWithWidth:screenWidth - (randomSeed+screenWidth/2)];
+    
+    firstWall.position = CGPointMake(firstWall.size.width/2, WALL_HEIGHT/2);
+    firstSisterWall.position = CGPointMake(screenWidth-(firstSisterWall.size.width/2), WALL_HEIGHT/2);
+    
+    // NSLog(@"first wall position: (%f,%f) ",  firstWall.position.x, firstWall.position.y);
+    // NSLog(@"first sister wall position: (%f,%f) ",  firstSisterWall.position.x, firstSisterWall.position.y);
+    //NSLog(@"view: (%f,%f) ",  screenWidth, screenHeight);
     
     [self.walls addObject:firstWall];
     [self.sisterWalls addObject:firstSisterWall];
@@ -168,34 +172,33 @@ const float WALL_WIDTH = 25.0;
 }
 -(void)addWallsAtLastWalls:(int)index
 {
-    SKSpriteNode *nextWall = [self makeWall];
-    SKSpriteNode *nextSisterWall = [self makeWall];
-    
     SKSpriteNode *previousWall = self.walls[index-1];
     
-    int nextX = [self getRandomNumberBetween:previousWall.position.x-10 to:previousWall.position.x+10];
-    if (nextX < WALL_WIDTH/2)
-    {
-        nextX +=10;
-    }
+    int nextWidth = [self getRandomNumberBetween:previousWall.size.width-10 to:previousWall.size.width+10];
+    int nextSisterWidth = screenWidth - (nextWidth+screenWidth/2);//nextX+screenWidth/2;
+    SKSpriteNode *nextWall = [self makeWallWithWidth:nextWidth];
+    SKSpriteNode *nextSisterWall = [self makeWallWithWidth:nextSisterWidth];
+
     int nextY = (index*WALL_HEIGHT)+(WALL_HEIGHT/2);
-    int nextSisterX = nextX+screenWidth/2;
-    if (nextSisterX > screenWidth-(WALL_WIDTH/2)) {
-        nextSisterX -= 10;
-        nextX -= 10;
-    }
     
-    nextWall.position = CGPointMake(nextX, nextY);
-    nextSisterWall.position = CGPointMake(nextSisterX, nextY);
+//    screenWidth-(firstSisterWall.size.width/2)
+
+//    if (nextSisterX > screenWidth-(WALL_WIDTH/2)) {
+//        nextSisterX -= 10;
+//        nextX -= 10;
+//    }
+    
+    nextWall.position = CGPointMake(nextWall.size.width/2, nextY);
+    nextSisterWall.position = CGPointMake(screenWidth-(nextSisterWidth/2), nextY);
     
     [self.walls addObject:nextWall];
     [self.sisterWalls addObject:nextSisterWall];
     [self addChild:nextSisterWall];
     [self addChild:nextWall];
 }
--(SKSpriteNode *)makeWall
+-(SKSpriteNode *)makeWallWithWidth:(float)wallWidth
 {
-    SKSpriteNode *wall = [SKSpriteNode spriteNodeWithColor:[self getRandomColor] size:CGSizeMake(WALL_HEIGHT, WALL_WIDTH)];
+    SKSpriteNode *wall = [SKSpriteNode spriteNodeWithColor:[self getRandomColor] size:CGSizeMake(wallWidth, WALL_HEIGHT)];
     wall.physicsBody =[SKPhysicsBody bodyWithRectangleOfSize:wall.size];
     wall.physicsBody.categoryBitMask = wallCategory;
     wall.physicsBody.collisionBitMask = rocketCarCategory;
