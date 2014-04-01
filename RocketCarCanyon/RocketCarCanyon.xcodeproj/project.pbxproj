@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		535A8DF218EB3696000F9B4B /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF118EB3696000F9B4B /* NewRelicAgent.framework */; };
 		5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5379243218A9E12200F5A4B5 /* CoreMotion.framework */; };
 		53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDD18A7171F00DC6258 /* Foundation.framework */; };
 		53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */; };
@@ -41,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		535A8DF118EB3696000F9B4B /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
 		5379243218A9E12200F5A4B5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		53F71CDA18A7171F00DC6258 /* RocketCarCanyon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketCarCanyon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53F71CDD18A7171F00DC6258 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,7 +76,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */,
-				535A8DF218EB3696000F9B4B /* NewRelicAgent.framework in Frameworks */,
 				5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */,
 				53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */,
 				53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */,
@@ -121,7 +118,6 @@
 		53F71CDC18A7171F00DC6258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				535A8DF118EB3696000F9B4B /* NewRelicAgent.framework */,
 				5379243218A9E12200F5A4B5 /* CoreMotion.framework */,
 				53F71CDD18A7171F00DC6258 /* Foundation.framework */,
 				53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */,
@@ -428,10 +424,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RocketCarCanyon/RocketCarCanyon-Prefix.pch";
 				INFOPLIST_FILE = "RocketCarCanyon/RocketCarCanyon-Info.plist";
@@ -446,10 +438,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RocketCarCanyon/RocketCarCanyon-Prefix.pch";
 				INFOPLIST_FILE = "RocketCarCanyon/RocketCarCanyon-Info.plist";
