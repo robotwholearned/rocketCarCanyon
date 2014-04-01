@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		535A8DF218EB3696000F9B4B /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF118EB3696000F9B4B /* NewRelicAgent.framework */; };
+		535A8DF418EB3761000F9B4B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF318EB3761000F9B4B /* CoreTelephony.framework */; };
+		535A8DF618EB3776000F9B4B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF518EB3776000F9B4B /* SystemConfiguration.framework */; };
+		535A8DF818EB3788000F9B4B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF718EB3788000F9B4B /* libz.dylib */; };
 		5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5379243218A9E12200F5A4B5 /* CoreMotion.framework */; };
 		53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDD18A7171F00DC6258 /* Foundation.framework */; };
 		53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */; };
@@ -42,6 +45,9 @@
 
 /* Begin PBXFileReference section */
 		535A8DF118EB3696000F9B4B /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
+		535A8DF318EB3761000F9B4B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		535A8DF518EB3776000F9B4B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		535A8DF718EB3788000F9B4B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5379243218A9E12200F5A4B5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		53F71CDA18A7171F00DC6258 /* RocketCarCanyon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketCarCanyon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53F71CDD18A7171F00DC6258 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -77,11 +83,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */,
-				535A8DF218EB3696000F9B4B /* NewRelicAgent.framework in Frameworks */,
-				5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */,
 				53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */,
+				5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */,
+				535A8DF418EB3761000F9B4B /* CoreTelephony.framework in Frameworks */,
 				53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */,
+				535A8DF818EB3788000F9B4B /* libz.dylib in Frameworks */,
+				535A8DF218EB3696000F9B4B /* NewRelicAgent.framework in Frameworks */,
+				F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */,
+				535A8DF618EB3776000F9B4B /* SystemConfiguration.framework in Frameworks */,
 				53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +130,9 @@
 		53F71CDC18A7171F00DC6258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				535A8DF718EB3788000F9B4B /* libz.dylib */,
+				535A8DF518EB3776000F9B4B /* SystemConfiguration.framework */,
+				535A8DF318EB3761000F9B4B /* CoreTelephony.framework */,
 				535A8DF118EB3696000F9B4B /* NewRelicAgent.framework */,
 				5379243218A9E12200F5A4B5 /* CoreMotion.framework */,
 				53F71CDD18A7171F00DC6258 /* Foundation.framework */,
