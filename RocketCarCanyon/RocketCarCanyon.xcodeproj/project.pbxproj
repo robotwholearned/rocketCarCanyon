@@ -28,7 +28,12 @@
 		53F71D0918A7172000DC6258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE118A7171F00DC6258 /* UIKit.framework */; };
 		53F71D1118A7172000DC6258 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53F71D0F18A7172000DC6258 /* InfoPlist.strings */; };
 		53F71D1318A7172000DC6258 /* RocketCarCanyonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F71D1218A7172000DC6258 /* RocketCarCanyonTests.m */; };
-		F062EEF618E5CB8C009D052A /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F062EEF518E5CB8C009D052A /* UIImage+ImageEffects.m */; };
+		E30B956E194785D900648C19 /* Countly_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = E30B9567194785D900648C19 /* Countly_OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E30B956F194785D900648C19 /* Countly.m in Sources */ = {isa = PBXBuildFile; fileRef = E30B9569194785D900648C19 /* Countly.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E30B9570194785D900648C19 /* Countly.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E30B956A194785D900648C19 /* Countly.xcdatamodeld */; };
+		E30B9571194785D900648C19 /* CountlyDB.m in Sources */ = {isa = PBXBuildFile; fileRef = E30B956D194785D900648C19 /* CountlyDB.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E30B95731947860500648C19 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30B95721947860400648C19 /* CoreData.framework */; };
+		E30B95761947890400648C19 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30B95751947890400648C19 /* Crashlytics.framework */; };
 		F062EEFA18E5CC23009D052A /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F062EEF918E5CC23009D052A /* MenuScene.m */; };
 		F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE318A7171F00DC6258 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
@@ -72,8 +77,15 @@
 		53F71D0E18A7172000DC6258 /* RocketCarCanyonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RocketCarCanyonTests-Info.plist"; sourceTree = "<group>"; };
 		53F71D1018A7172000DC6258 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53F71D1218A7172000DC6258 /* RocketCarCanyonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RocketCarCanyonTests.m; sourceTree = "<group>"; };
-		F062EEF418E5CB8B009D052A /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "third.party/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		F062EEF518E5CB8C009D052A /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "third.party/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		E30B9566194785D900648C19 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly_OpenUDID.h; sourceTree = "<group>"; };
+		E30B9567194785D900648C19 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly_OpenUDID.m; sourceTree = "<group>"; };
+		E30B9568194785D900648C19 /* Countly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly.h; sourceTree = "<group>"; };
+		E30B9569194785D900648C19 /* Countly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly.m; sourceTree = "<group>"; };
+		E30B956B194785D900648C19 /* Countly.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Countly.xcdatamodel; sourceTree = "<group>"; };
+		E30B956C194785D900648C19 /* CountlyDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountlyDB.h; sourceTree = "<group>"; };
+		E30B956D194785D900648C19 /* CountlyDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyDB.m; sourceTree = "<group>"; };
+		E30B95721947860400648C19 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E30B95751947890400648C19 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F062EEF818E5CC23009D052A /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		F062EEF918E5CC23009D052A /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E30B95731947860500648C19 /* CoreData.framework in Frameworks */,
 				53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */,
 				5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */,
 				535A8DF418EB3761000F9B4B /* CoreTelephony.framework in Frameworks */,
@@ -92,6 +105,7 @@
 				F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */,
 				535A8DF618EB3776000F9B4B /* SystemConfiguration.framework in Frameworks */,
 				53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */,
+				E30B95761947890400648C19 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +144,8 @@
 		53F71CDC18A7171F00DC6258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E30B95751947890400648C19 /* Crashlytics.framework */,
+				E30B95721947860400648C19 /* CoreData.framework */,
 				535A8DF718EB3788000F9B4B /* libz.dylib */,
 				535A8DF518EB3776000F9B4B /* SystemConfiguration.framework */,
 				535A8DF318EB3761000F9B4B /* CoreTelephony.framework */,
@@ -196,8 +212,13 @@
 		F062EEF718E5CB91009D052A /* third.party */ = {
 			isa = PBXGroup;
 			children = (
-				F062EEF418E5CB8B009D052A /* UIImage+ImageEffects.h */,
-				F062EEF518E5CB8C009D052A /* UIImage+ImageEffects.m */,
+				E30B9566194785D900648C19 /* Countly_OpenUDID.h */,
+				E30B9567194785D900648C19 /* Countly_OpenUDID.m */,
+				E30B9568194785D900648C19 /* Countly.h */,
+				E30B9569194785D900648C19 /* Countly.m */,
+				E30B956A194785D900648C19 /* Countly.xcdatamodeld */,
+				E30B956C194785D900648C19 /* CountlyDB.h */,
+				E30B956D194785D900648C19 /* CountlyDB.m */,
 			);
 			name = third.party;
 			sourceTree = "<group>";
@@ -212,6 +233,7 @@
 				53F71CD618A7171F00DC6258 /* Sources */,
 				53F71CD718A7171F00DC6258 /* Frameworks */,
 				53F71CD818A7171F00DC6258 /* Resources */,
+				E30B9574194788E900648C19 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -295,17 +317,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E30B9574194788E900648C19 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 5d801201aed5f282b1fe462f1c8e746a937aca9d 01afe3068bb397e148257eff22068bf97b8e1ea682f995f7ffc3bec10049bf5f";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		53F71CD618A7171F00DC6258 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53F71CFC18A7171F00DC6258 /* MyScene.m in Sources */,
-				F062EEF618E5CB8C009D052A /* UIImage+ImageEffects.m in Sources */,
-				53F71CF918A7171F00DC6258 /* ViewController.m in Sources */,
-				F062EEFA18E5CC23009D052A /* MenuScene.m in Sources */,
 				53F71CF018A7171F00DC6258 /* AppDelegate.m in Sources */,
+				E30B9571194785D900648C19 /* CountlyDB.m in Sources */,
+				E30B956F194785D900648C19 /* Countly.m in Sources */,
+				E30B956E194785D900648C19 /* Countly_OpenUDID.m in Sources */,
+				E30B9570194785D900648C19 /* Countly.xcdatamodeld in Sources */,
 				53F71CEC18A7171F00DC6258 /* main.m in Sources */,
+				F062EEFA18E5CC23009D052A /* MenuScene.m in Sources */,
+				53F71CFC18A7171F00DC6258 /* MyScene.m in Sources */,
+				53F71CF918A7171F00DC6258 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +488,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RocketCarCanyon/RocketCarCanyon-Prefix.pch";
 				INFOPLIST_FILE = "RocketCarCanyon/RocketCarCanyon-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -465,6 +507,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RocketCarCanyon/RocketCarCanyon-Prefix.pch";
 				INFOPLIST_FILE = "RocketCarCanyon/RocketCarCanyon-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -542,6 +585,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E30B956A194785D900648C19 /* Countly.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E30B956B194785D900648C19 /* Countly.xcdatamodel */,
+			);
+			currentVersion = E30B956B194785D900648C19 /* Countly.xcdatamodel */;
+			path = Countly.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 53F71CD218A7171F00DC6258 /* Project object */;
 }
