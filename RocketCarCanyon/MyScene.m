@@ -57,50 +57,14 @@ const float WALL_DELTA = 10;
         self.rocketCar.physicsBody.collisionBitMask = wallCategory;
         [self addChild:self.rocketCar];
 
-        self.motionManager = [[CMMotionManager alloc] init];
-        self.motionManager.accelerometerUpdateInterval = 0.2;
-        [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData* accelerometerData, NSError* error) {
-             [self outputAccelertionData:accelerometerData.acceleration];
-             if(error)
-             {
-                 NSLog(@"%@", error);
-             }    
-         }];
         self.spawnTimeInterval = 0.5;
     }
     return self;
 }
-- (void)outputAccelertionData:(CMAcceleration)acceleration
-{
-    currentMaxAccelX = 0;
-    currentMaxAccelY = 0;
-
-    if (fabs(acceleration.x) > fabs(currentMaxAccelX)) {
-        currentMaxAccelX = acceleration.x;
-    }
-    if (fabs(acceleration.y) > fabs(currentMaxAccelY)) {
-        currentMaxAccelY = acceleration.y;
-    }
-}
 - (void)update:(CFTimeInterval)currentTime
 {
     /* Called before each frame is rendered */
-    float maxX, maxY, minX, minY, newY, newX, adjustedMaxXAccel, adjustedMaxYAccel;
 
-    maxY = screenWidth - self.rocketCar.size.width / 2;
-    minY = self.rocketCar.size.width / 2;
-
-    maxX = screenHeight - self.rocketCar.size.height / 2;
-    minX = self.rocketCar.size.height / 2;
-
-    adjustedMaxXAccel = MAX((currentMaxAccelX * 10 + self.rocketCar.position.x), minY);
-    newX = MIN(adjustedMaxXAccel, maxY);
-
-    //plus six so that tilt works for y, otherwise have to flip iDevice
-    adjustedMaxYAccel = MAX((currentMaxAccelY * 10 + 6.0 + self.rocketCar.position.y), minX);
-    newY = MIN(adjustedMaxYAccel, maxX);
-
-    self.rocketCar.position = CGPointMake(newX, newY);
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
     self.lastUpdateTimeInterval = currentTime;
     if (timeSinceLast > self.spawnTimeInterval) // more than a second since last update
