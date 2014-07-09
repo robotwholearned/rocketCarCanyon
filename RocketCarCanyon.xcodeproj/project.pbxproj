@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		535A8DF218EB3696000F9B4B /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF118EB3696000F9B4B /* NewRelicAgent.framework */; };
-		535A8DF418EB3761000F9B4B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF318EB3761000F9B4B /* CoreTelephony.framework */; };
+		535A8DF418EB3761000F9B4B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF318EB3761000F9B4B /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		535A8DF618EB3776000F9B4B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF518EB3776000F9B4B /* SystemConfiguration.framework */; };
 		535A8DF818EB3788000F9B4B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF718EB3788000F9B4B /* libz.dylib */; };
 		5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5379243218A9E12200F5A4B5 /* CoreMotion.framework */; };

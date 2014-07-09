@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Crashlytics/Crashlytics.h>
+#import "Countly.h"
 
 @implementation AppDelegate
 
@@ -19,6 +20,7 @@
     [NewRelicAgent startWithApplicationToken:@"AAdf87ff451b22d55ca506c773725b39e77adf29cc"];
 
     [Crashlytics startWithAPIKey:@"5d801201aed5f282b1fe462f1c8e746a937aca9d"];
+    [[Countly sharedInstance] startOnCloudWithAppKey:@"7ecf6ab7af01aa1a73702fff5e15c8be6f8a765f"];
     return YES;
 }
 
