@@ -18,10 +18,15 @@ const float WALL_DELTA = 10;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) NSArray *colors;
 @property (nonatomic) CGFloat spawnTimeInterval;
+@property (nonatomic) CFTimeInterval previousTime;
+@property (nonatomic) CFTimeInterval timeCounter;
 
 @end
 
-@implementation MyScene
+@implementation MyScene{
+    SKAction *actionMoveUp;
+    SKAction *actionMoveDown;
+}
 
 - (id)initWithSize:(CGSize)size
 {
@@ -55,39 +60,67 @@ const float WALL_DELTA = 10;
         self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
         self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
         self.rocketCar.physicsBody.collisionBitMask = wallCategory;
+        
+        actionMoveUp = [SKAction moveByX:30 y:0 duration:.2];
+        actionMoveDown = [SKAction moveByX:-30 y:0 duration:.2];
+        
         [self addChild:self.rocketCar];
 
         self.spawnTimeInterval = 0.5;
+        
+        self.previousTime = 0;
     }
     return self;
 }
 - (void)update:(CFTimeInterval)currentTime
 {
     /* Called before each frame is rendered */
-
-    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
-    self.lastUpdateTimeInterval = currentTime;
-    if (timeSinceLast > self.spawnTimeInterval) // more than a second since last update
-    {
-        timeSinceLast = self.spawnTimeInterval / 60.0;
-        self.lastUpdateTimeInterval = currentTime;
+   
+    //NSLog(@"Spawn interval");
+    
+    if (self.previousTime == 0){
+        self.previousTime = currentTime;
     }
-    [self updateWithTimeSinceLastUpdate:timeSinceLast];
-}
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast
-{
-    self.lastSpawnTimeInterval += timeSinceLast;
-    if (self.lastSpawnTimeInterval > self.spawnTimeInterval)
-    {
-        self.lastSpawnTimeInterval = 0;
-        if (self.spawnTimeInterval - 0.005 >0) {self.spawnTimeInterval -= 0.005;}
-        NSLog(@"Spawn interval: %f", self.spawnTimeInterval);
+    self.timeCounter += currentTime - self.previousTime;
+    if (self.timeCounter > 0.5) {
+        self.timeCounter = 0;
         [self updateWalls];
     }
+    self.previousTime = currentTime;
 }
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
     /* Called when a touch begins */
+//    CGPoint touchPoint = [[touches anyObject] locationInNode:self.scene];
+//    if (touchPoint.y > screenWidth/2){
+//        [self moveRocketCarRight];
+//    }
+//    else{
+//        [self moveRocketCarLeft];
+//    }
+    UITouch *touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInNode:self.scene];
+    if(touchLocation.x > self.rocketCar.position.x){
+        if(self.rocketCar.position.x < 270){
+            [self.rocketCar runAction:actionMoveUp];
+        }
+    }else{
+        if(self.rocketCar.position.x > 50){
+            [self.rocketCar runAction:actionMoveDown];
+        }
+    }
+    
+}
+-(void) moveRocketCarRight{
+    //self.rocketCar.position = CGPointMake(newX, newY);
+    NSLog(@"Move Right");
+    SKAction *moveRight = [SKAction moveByX:50 y:0 duration: 0];
+    [self.rocketCar runAction:moveRight];
+}
+-(void) moveRocketCarLeft{
+    NSLog(@"Move Left");
+    SKAction *moveLeft = [SKAction moveByX:-5 y:0 duration: 0];
+    [self.rocketCar runAction:moveLeft];
 }
 - (void)updateWalls
 {
