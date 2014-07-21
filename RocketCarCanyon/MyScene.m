@@ -9,7 +9,6 @@
 #import "MyScene.h"
 
 const float WALL_HEIGHT = 15.0;
-//const float WALL_WIDTH = 25.0;
 const float WALL_DELTA = 10;
 
 @interface MyScene ()
@@ -44,17 +43,13 @@ const float WALL_DELTA = 10;
         verticalEquator.position = CGPointMake(screenWidth / 2, verticalEquator.size.height / 2);
         [self addChild:verticalEquator];
 
-        self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(25, 25)];
-        NSLog(@"Starting x's: %f, %f", ((SKSpriteNode*)self.walls[0]).position.x, ((SKSpriteNode*)self.sisterWalls[0]).position.x);
+        self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(50, 25)];
         float rocketCarStartX = (((SKSpriteNode*)self.sisterWalls[0]).position.x + ((SKSpriteNode*)self.walls[0]).position.x) / 2;
-        NSLog(@"Starting x: %f", rocketCarStartX);
         self.rocketCar.position = CGPointMake(rocketCarStartX, (CGRectGetMinY(self.frame) + self.rocketCar.size.height));
         self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
         self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
         self.rocketCar.physicsBody.collisionBitMask = wallCategory;
-
-        actionMoveUp = [SKAction moveByX:30 y:0 duration:.2];
-        actionMoveDown = [SKAction moveByX:-30 y:0 duration:.2];
+        self.rocketCar.physicsBody.allowsRotation = NO;
 
         [self addChild:self.rocketCar];
 
