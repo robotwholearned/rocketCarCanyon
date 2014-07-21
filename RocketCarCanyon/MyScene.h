@@ -12,9 +12,6 @@
 extern const float WALL_HEIGHT;
 extern const float WALL_DELTA;
 
-static const uint32_t rocketCarCategory = 0x1 << 0;
-static const uint32_t wallCategory = 0x1 << 1;
-
 @interface MyScene : SKScene <SKPhysicsContactDelegate> {
     CGRect screenRect;
     CGFloat screenHeight;

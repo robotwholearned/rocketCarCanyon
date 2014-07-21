@@ -11,6 +11,9 @@
 const float WALL_HEIGHT = 15.0;
 const float WALL_DELTA = 10;
 
+static const uint32_t rocketCarCategory = 0x1 << 0;
+static const uint32_t wallCategory = 0x1 << 1;
+
 @interface MyScene ()
 
 @property (nonatomic) CFTimeInterval previousTime;
@@ -43,7 +46,7 @@ const float WALL_DELTA = 10;
         verticalEquator.position = CGPointMake(screenWidth / 2, verticalEquator.size.height / 2);
         [self addChild:verticalEquator];
 
-        self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(25, 25)];
+        self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(50, 25)];
         NSLog(@"Starting x's: %f, %f", ((SKSpriteNode*)self.walls[0]).position.x, ((SKSpriteNode*)self.sisterWalls[0]).position.x);
         float rocketCarStartX = (((SKSpriteNode*)self.sisterWalls[0]).position.x + ((SKSpriteNode*)self.walls[0]).position.x) / 2;
         NSLog(@"Starting x: %f", rocketCarStartX);
