@@ -14,10 +14,6 @@ const float WALL_DELTA = 10;
 
 @interface MyScene ()
 
-//@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
-//@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-//@property (nonatomic) NSArray *colors;
-@property (nonatomic) CGFloat spawnTimeInterval;
 @property (nonatomic) CFTimeInterval previousTime;
 @property (nonatomic) CFTimeInterval timeCounter;
 
@@ -62,8 +58,6 @@ const float WALL_DELTA = 10;
 
         [self addChild:self.rocketCar];
 
-        self.spawnTimeInterval = 0.5;
-
         self.previousTime = 0;
     }
     return self;
@@ -71,8 +65,6 @@ const float WALL_DELTA = 10;
 - (void)update:(CFTimeInterval)currentTime
 {
     /* Called before each frame is rendered */
-
-    //NSLog(@"Spawn interval");
 
     if (self.previousTime == 0) {
         self.previousTime = currentTime;
