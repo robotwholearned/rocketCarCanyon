@@ -10,15 +10,25 @@
 #import <CoreMotion/CoreMotion.h>
 
 extern const float WALL_HEIGHT;
+//extern const float WALL_WIDTH;
 extern const float WALL_DELTA;
 
-@interface MyScene : SKScene <SKPhysicsContactDelegate> {
-    CGRect screenRect;
+// These constanst are used to define the physics interactions between physics bodies in the scene.
+static const uint32_t rocketCarCategory =  0x1 << 0;
+static const uint32_t wallCategory      =  0x1 << 1;
+//static const uint32_t edgeCategory      =  0x1 << 2;
+
+@interface MyScene : SKScene <SKPhysicsContactDelegate, UIAccelerometerDelegate>
+{
+    CGRect  screenRect;
     CGFloat screenHeight;
     CGFloat screenWidth;
+    double currentMaxAccelX;
+    double currentMaxAccelY;
 }
-@property (nonatomic) SKSpriteNode* rocketCar;
-@property (strong, nonatomic) NSMutableArray* walls;
-@property (strong, nonatomic) NSMutableArray* sisterWalls;
+@property (strong, nonatomic) CMMotionManager *motionManager;
+@property (nonatomic) SKSpriteNode *rocketCar;
+@property (strong, nonatomic) NSMutableArray *walls;
+@property (strong, nonatomic) NSMutableArray *sisterWalls;
 
 @end
