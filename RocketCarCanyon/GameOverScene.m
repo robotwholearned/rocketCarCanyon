@@ -16,12 +16,9 @@
     self = [super initWithSize:size];
 
     if (self) {
-        //        SKSpriteNode* background = [SKSpriteNode spriteNodeWithImageNamed:@"bg.png"];
-        //        background.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
-        //        [self addChild:background];
 
         SKLabelNode* gameOverLabel = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
-        gameOverLabel.fontSize = 42;
+        gameOverLabel.fontSize = 35;
         gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
 
         self.backgroundColor = [UIColor redColor];

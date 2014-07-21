@@ -23,6 +23,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 @property (nonatomic) CFTimeInterval previousTime;
 @property (nonatomic) CFTimeInterval timeCounter;
 @property (nonatomic) BOOL isTouchingCar;
+@property (nonatomic) int distanceSurvived;
 
 @end
 
@@ -67,6 +68,7 @@ static const uint32_t wallCategory = 0x1 << 1;
         [self addChild:self.rocketCar];
 
         self.previousTime = 0;
+        self.distanceSurvived = 0;
     }
     return self;
 }
@@ -187,6 +189,7 @@ static const uint32_t wallCategory = 0x1 << 1;
     [self.sisterWalls addObject:nextSisterWall];
     [self addChild:nextSisterWall];
     [self addChild:nextWall];
+    self.distanceSurvived++;
 }
 - (SKSpriteNode*)makeWallWithWidth:(float)wallWidth
 {
@@ -225,7 +228,7 @@ static const uint32_t wallCategory = 0x1 << 1;
         secondBody = contact.bodyA;
     }
     if (firstBody.categoryBitMask == rocketCarCategory && secondBody.categoryBitMask == wallCategory) {
-        GameOverScene* gameOverScene = [[GameOverScene alloc] initWithSize:self.frame.size distanceTraveled:0];
+        GameOverScene* gameOverScene = [[GameOverScene alloc] initWithSize:self.frame.size distanceTraveled:self.distanceSurvived];
         [self.view presentScene:gameOverScene];
     }
 }
