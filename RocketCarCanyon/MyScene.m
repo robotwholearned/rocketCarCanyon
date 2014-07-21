@@ -9,15 +9,10 @@
 #import "MyScene.h"
 
 const float WALL_HEIGHT = 15.0;
-//const float WALL_WIDTH = 25.0;
 const float WALL_DELTA = 10;
 
 @interface MyScene ()
 
-//@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
-//@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-//@property (nonatomic) NSArray *colors;
-@property (nonatomic) CGFloat spawnTimeInterval;
 @property (nonatomic) CFTimeInterval previousTime;
 @property (nonatomic) CFTimeInterval timeCounter;
 
@@ -57,12 +52,7 @@ const float WALL_DELTA = 10;
         self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
         self.rocketCar.physicsBody.collisionBitMask = wallCategory;
 
-        actionMoveUp = [SKAction moveByX:30 y:0 duration:.2];
-        actionMoveDown = [SKAction moveByX:-30 y:0 duration:.2];
-
         [self addChild:self.rocketCar];
-
-        self.spawnTimeInterval = 0.5;
 
         self.previousTime = 0;
     }
@@ -71,8 +61,6 @@ const float WALL_DELTA = 10;
 - (void)update:(CFTimeInterval)currentTime
 {
     /* Called before each frame is rendered */
-
-    //NSLog(@"Spawn interval");
 
     if (self.previousTime == 0) {
         self.previousTime = currentTime;
@@ -183,11 +171,6 @@ const float WALL_DELTA = 10;
     CGFloat hue = (arc4random() % 256 / 256.0); //  0.0 to 1.0
     CGFloat saturation = (arc4random() % 128 / 256.0) + 0.5; //  0.5 to 1.0, away from white
     CGFloat brightness = (arc4random() % 128 / 256.0) + 0.5; //  0.5 to 1.0, away from black
-
-    //hue 0.09 to 0.15
-    //sat 0.07 to 0.39
-    //bri 0.07 to 0.37
-    //    int wevs = (arc4random() % ([self.colors count] - 1));
 
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
