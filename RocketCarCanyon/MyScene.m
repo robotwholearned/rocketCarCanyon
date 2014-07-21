@@ -14,32 +14,28 @@ const float WALL_DELTA = 10;
 
 @interface MyScene ()
 
-@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
-@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-@property (nonatomic) NSArray *colors;
+//@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
+//@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+//@property (nonatomic) NSArray *colors;
 @property (nonatomic) CGFloat spawnTimeInterval;
 @property (nonatomic) CFTimeInterval previousTime;
 @property (nonatomic) CFTimeInterval timeCounter;
 
 @end
 
-@implementation MyScene{
-    SKAction *actionMoveUp;
-    SKAction *actionMoveDown;
+@implementation MyScene {
+    SKAction* actionMoveUp;
+    SKAction* actionMoveDown;
 }
 
 - (id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
-
-        //int* x = NULL;
-        //*x = 42;
-
         screenHeight = self.size.height;
         screenWidth = self.size.width;
 
         /* Setup your scene here */
-        
+
         self.backgroundColor = [SKColor colorWithRed:0.33 green:0.18 blue:0 alpha:1.0];
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         self.physicsWorld.contactDelegate = self;
@@ -60,14 +56,14 @@ const float WALL_DELTA = 10;
         self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
         self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
         self.rocketCar.physicsBody.collisionBitMask = wallCategory;
-        
+
         actionMoveUp = [SKAction moveByX:30 y:0 duration:.2];
         actionMoveDown = [SKAction moveByX:-30 y:0 duration:.2];
-        
+
         [self addChild:self.rocketCar];
 
         self.spawnTimeInterval = 0.5;
-        
+
         self.previousTime = 0;
     }
     return self;
@@ -75,10 +71,10 @@ const float WALL_DELTA = 10;
 - (void)update:(CFTimeInterval)currentTime
 {
     /* Called before each frame is rendered */
-   
+
     //NSLog(@"Spawn interval");
-    
-    if (self.previousTime == 0){
+
+    if (self.previousTime == 0) {
         self.previousTime = currentTime;
     }
     self.timeCounter += currentTime - self.previousTime;
@@ -91,36 +87,11 @@ const float WALL_DELTA = 10;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
     /* Called when a touch begins */
-//    CGPoint touchPoint = [[touches anyObject] locationInNode:self.scene];
-//    if (touchPoint.y > screenWidth/2){
-//        [self moveRocketCarRight];
-//    }
-//    else{
-//        [self moveRocketCarLeft];
-//    }
-    UITouch *touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInNode:self.scene];
-    if(touchLocation.x > self.rocketCar.position.x){
-        if(self.rocketCar.position.x < 270){
-            [self.rocketCar runAction:actionMoveUp];
-        }
-    }else{
-        if(self.rocketCar.position.x > 50){
-            [self.rocketCar runAction:actionMoveDown];
-        }
+    for (UITouch* touch in touches) {
+        CGPoint location = [touch locationInNode:self.scene];
+        CGPoint fixedLocation = CGPointMake(location.x, (CGRectGetMinY(self.frame) + self.rocketCar.size.height));
+        self.rocketCar.position = fixedLocation;
     }
-    
-}
--(void) moveRocketCarRight{
-    //self.rocketCar.position = CGPointMake(newX, newY);
-    NSLog(@"Move Right");
-    SKAction *moveRight = [SKAction moveByX:50 y:0 duration: 0];
-    [self.rocketCar runAction:moveRight];
-}
--(void) moveRocketCarLeft{
-    NSLog(@"Move Left");
-    SKAction *moveLeft = [SKAction moveByX:-5 y:0 duration: 0];
-    [self.rocketCar runAction:moveLeft];
 }
 - (void)updateWalls
 {
@@ -148,12 +119,12 @@ const float WALL_DELTA = 10;
     int randomSeed = [self getRandomNumberBetween:25 to:(screenWidth / 2 - 25)];
     //int randomSeed = 283;
     NSLog(@"Random seed: %i", randomSeed);
-    SKSpriteNode *firstWall = [self makeWallWithWidth:randomSeed];
-    SKSpriteNode *firstSisterWall = [self makeWallWithWidth:screenWidth - (randomSeed+screenWidth/2)];
-    
-    firstWall.position = CGPointMake(firstWall.size.width/2, WALL_HEIGHT/2);
-    firstSisterWall.position = CGPointMake(screenWidth-(firstSisterWall.size.width/2), WALL_HEIGHT/2);
-    
+    SKSpriteNode* firstWall = [self makeWallWithWidth:randomSeed];
+    SKSpriteNode* firstSisterWall = [self makeWallWithWidth:screenWidth - (randomSeed + screenWidth / 2)];
+
+    firstWall.position = CGPointMake(firstWall.size.width / 2, WALL_HEIGHT / 2);
+    firstSisterWall.position = CGPointMake(screenWidth - (firstSisterWall.size.width / 2), WALL_HEIGHT / 2);
+
     [self.walls addObject:firstWall];
     [self.sisterWalls addObject:firstSisterWall];
 
@@ -177,16 +148,16 @@ const float WALL_DELTA = 10;
         NSLog(@"2: nextWidth: %f", nextWidth);
         nextWidth = WALL_DELTA;
     }
-    float nextSisterWidth = screenWidth - (nextWidth+screenWidth/2);//nextX+screenWidth/2;
-    
-    SKSpriteNode *nextWall = [self makeWallWithWidth:nextWidth];
-    SKSpriteNode *nextSisterWall = [self makeWallWithWidth:nextSisterWidth];
-    
-    float nextY = (index*WALL_HEIGHT)+(WALL_HEIGHT/2);
-    
-    nextWall.position = CGPointMake(nextWall.size.width/2, nextY);
-    nextSisterWall.position = CGPointMake(screenWidth-(nextSisterWidth/2), nextY);
-    
+    float nextSisterWidth = screenWidth - (nextWidth + screenWidth / 2); //nextX+screenWidth/2;
+
+    SKSpriteNode* nextWall = [self makeWallWithWidth:nextWidth];
+    SKSpriteNode* nextSisterWall = [self makeWallWithWidth:nextSisterWidth];
+
+    float nextY = (index * WALL_HEIGHT) + (WALL_HEIGHT / 2);
+
+    nextWall.position = CGPointMake(nextWall.size.width / 2, nextY);
+    nextSisterWall.position = CGPointMake(screenWidth - (nextSisterWidth / 2), nextY);
+
     [self.walls addObject:nextWall];
     [self.sisterWalls addObject:nextSisterWall];
     [self addChild:nextSisterWall];
@@ -209,15 +180,15 @@ const float WALL_DELTA = 10;
 }
 - (UIColor*)getRandomColor
 {
-    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
-    
+    CGFloat hue = (arc4random() % 256 / 256.0); //  0.0 to 1.0
+    CGFloat saturation = (arc4random() % 128 / 256.0) + 0.5; //  0.5 to 1.0, away from white
+    CGFloat brightness = (arc4random() % 128 / 256.0) + 0.5; //  0.5 to 1.0, away from black
+
     //hue 0.09 to 0.15
     //sat 0.07 to 0.39
     //bri 0.07 to 0.37
     //    int wevs = (arc4random() % ([self.colors count] - 1));
-    
+
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 @end
