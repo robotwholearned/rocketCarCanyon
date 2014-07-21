@@ -42,18 +42,21 @@ static const uint32_t wallCategory = 0x1 << 1;
         self.sisterWalls = [NSMutableArray new];
         [self startWalls];
 
+#warning equator is for testing only
         SKSpriteNode* verticalEquator = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(2, screenHeight)];
         verticalEquator.position = CGPointMake(screenWidth / 2, verticalEquator.size.height / 2);
         [self addChild:verticalEquator];
 
         self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(50, 25)];
-        NSLog(@"Starting x's: %f, %f", ((SKSpriteNode*)self.walls[0]).position.x, ((SKSpriteNode*)self.sisterWalls[0]).position.x);
         float rocketCarStartX = (((SKSpriteNode*)self.sisterWalls[0]).position.x + ((SKSpriteNode*)self.walls[0]).position.x) / 2;
-        NSLog(@"Starting x: %f", rocketCarStartX);
         self.rocketCar.position = CGPointMake(rocketCarStartX, (CGRectGetMinY(self.frame) + self.rocketCar.size.height));
         self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
         self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
+        self.rocketCar.physicsBody.contactTestBitMask = wallCategory;
         self.rocketCar.physicsBody.collisionBitMask = wallCategory;
+
+        self.rocketCar.physicsBody.linearDamping = 0.0f;
+        self.rocketCar.physicsBody.allowsRotation = NO;
 
         [self addChild:self.rocketCar];
 
@@ -159,7 +162,7 @@ static const uint32_t wallCategory = 0x1 << 1;
     SKSpriteNode* wall = [SKSpriteNode spriteNodeWithColor:[self getRandomColor] size:CGSizeMake(wallWidth, WALL_HEIGHT)];
     wall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:wall.size];
     wall.physicsBody.categoryBitMask = wallCategory;
-    wall.physicsBody.collisionBitMask = rocketCarCategory;
+    wall.physicsBody.collisionBitMask = 0;
     wall.physicsBody.dynamic = NO;
     return wall;
 }
