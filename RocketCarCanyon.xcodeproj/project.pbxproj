@@ -12,6 +12,7 @@
 		535A8DF618EB3776000F9B4B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF518EB3776000F9B4B /* SystemConfiguration.framework */; };
 		535A8DF818EB3788000F9B4B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535A8DF718EB3788000F9B4B /* libz.dylib */; };
 		5379243318A9E12200F5A4B5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5379243218A9E12200F5A4B5 /* CoreMotion.framework */; };
+		53C1EDD8197DC7BA00BB221F /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C1EDD7197DC7BA00BB221F /* GameOverScene.m */; };
 		53F71CDE18A7171F00DC6258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDD18A7171F00DC6258 /* Foundation.framework */; };
 		53F71CE018A7171F00DC6258 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */; };
 		53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE118A7171F00DC6258 /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 		535A8DF518EB3776000F9B4B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		535A8DF718EB3788000F9B4B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5379243218A9E12200F5A4B5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		53C1EDD6197DC7BA00BB221F /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		53C1EDD7197DC7BA00BB221F /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		53F71CDA18A7171F00DC6258 /* RocketCarCanyon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketCarCanyon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53F71CDD18A7171F00DC6258 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53F71CDF18A7171F00DC6258 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -173,6 +176,8 @@
 				F062EEF918E5CC23009D052A /* MenuScene.m */,
 				53F71CFA18A7171F00DC6258 /* MyScene.h */,
 				53F71CFB18A7171F00DC6258 /* MyScene.m */,
+				53C1EDD6197DC7BA00BB221F /* GameOverScene.h */,
+				53C1EDD7197DC7BA00BB221F /* GameOverScene.m */,
 				53F71CFF18A7171F00DC6258 /* Images.xcassets */,
 				53F71CE618A7171F00DC6258 /* Supporting Files */,
 			);
@@ -341,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53C1EDD8197DC7BA00BB221F /* GameOverScene.m in Sources */,
 				53F71CF018A7171F00DC6258 /* AppDelegate.m in Sources */,
 				E30B9571194785D900648C19 /* CountlyDB.m in Sources */,
 				E30B956F194785D900648C19 /* Countly.m in Sources */,

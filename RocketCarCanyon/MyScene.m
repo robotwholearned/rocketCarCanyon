@@ -7,9 +7,13 @@
 //
 
 #import "MyScene.h"
+#import "GameOverScene.h"
 
 const float WALL_HEIGHT = 15.0;
 const float WALL_DELTA = 10;
+
+static NSString* rocketCarCategoryName = @"rocketCar";
+static NSString* wallCategoryName = @"wall";
 
 static const uint32_t rocketCarCategory = 0x1 << 0;
 static const uint32_t wallCategory = 0x1 << 1;
@@ -18,6 +22,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 
 @property (nonatomic) CFTimeInterval previousTime;
 @property (nonatomic) CFTimeInterval timeCounter;
+@property (nonatomic) BOOL isTouchingCar;
 
 @end
 
@@ -47,7 +52,7 @@ static const uint32_t wallCategory = 0x1 << 1;
         verticalEquator.position = CGPointMake(screenWidth / 2, verticalEquator.size.height / 2);
         [self addChild:verticalEquator];
 
-        self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(50, 25)];
+        self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(25, 25)];
         float rocketCarStartX = (((SKSpriteNode*)self.sisterWalls[0]).position.x + ((SKSpriteNode*)self.walls[0]).position.x) / 2;
         self.rocketCar.position = CGPointMake(rocketCarStartX, (CGRectGetMinY(self.frame) + self.rocketCar.size.height));
         self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
@@ -57,6 +62,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 
         self.rocketCar.physicsBody.linearDamping = 0.0f;
         self.rocketCar.physicsBody.allowsRotation = NO;
+        self.rocketCar.name = rocketCarCategoryName;
 
         [self addChild:self.rocketCar];
 
@@ -81,11 +87,36 @@ static const uint32_t wallCategory = 0x1 << 1;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
     /* Called when a touch begins */
-    for (UITouch* touch in touches) {
-        CGPoint location = [touch locationInNode:self.scene];
-        CGPoint fixedLocation = CGPointMake(location.x, (CGRectGetMinY(self.frame) + self.rocketCar.size.height));
-        self.rocketCar.position = fixedLocation;
+    UITouch* touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+
+    SKPhysicsBody* body = [self.physicsWorld bodyAtPoint:location];
+
+    if (body && [body.node.name isEqualToString:rocketCarCategoryName]) {
+        NSLog(@"Began touch on car");
+        self.isTouchingCar = YES;
     }
+}
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    if (self.isTouchingCar) {
+        UITouch* touch = [touches anyObject];
+        CGPoint location = [touch locationInNode:self];
+        CGPoint previousLocation = [touch previousLocationInNode:self];
+
+        SKSpriteNode* rocketCar = (SKSpriteNode*)[self childNodeWithName:rocketCarCategoryName];
+
+        int rocketCarX = rocketCar.position.x + (location.x - previousLocation.x);
+
+        rocketCarX = MAX(rocketCarX, rocketCar.size.width / 2);
+        rocketCarX = MIN(rocketCarX, self.size.width - rocketCar.size.width / 2);
+
+        rocketCar.position = CGPointMake(rocketCarX, rocketCar.position.y);
+    }
+}
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    self.isTouchingCar = NO;
 }
 - (void)updateWalls
 {
@@ -164,6 +195,7 @@ static const uint32_t wallCategory = 0x1 << 1;
     wall.physicsBody.categoryBitMask = wallCategory;
     wall.physicsBody.collisionBitMask = 0;
     wall.physicsBody.dynamic = NO;
+    wall.name = wallCategoryName;
     return wall;
 }
 
@@ -179,5 +211,22 @@ static const uint32_t wallCategory = 0x1 << 1;
     CGFloat brightness = (arc4random() % 128 / 256.0) + 0.5; //  0.5 to 1.0, away from black
 
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+}
+- (void)didBeginContact:(SKPhysicsContact*)contact
+{
+    SKPhysicsBody* firstBody;
+    SKPhysicsBody* secondBody;
+
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    } else {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    if (firstBody.categoryBitMask == rocketCarCategory && secondBody.categoryBitMask == wallCategory) {
+        GameOverScene* gameOverScene = [[GameOverScene alloc] initWithSize:self.frame.size distanceTraveled:0];
+        [self.view presentScene:gameOverScene];
+    }
 }
 @end
