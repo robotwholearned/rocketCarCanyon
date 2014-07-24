@@ -9,7 +9,6 @@
 #import <SpriteKit/SpriteKit.h>
 #import <CoreMotion/CoreMotion.h>
 
-extern const float WALL_HEIGHT;
 extern const float WALL_DELTA;
 
 @interface MyScene : SKScene <SKPhysicsContactDelegate> {
