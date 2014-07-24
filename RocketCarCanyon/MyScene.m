@@ -8,6 +8,7 @@
 
 #import "MyScene.h"
 #import "GameOverScene.h"
+#import "WallSprite.h"
 
 const float WALL_DELTA = 10;
 
@@ -111,10 +112,9 @@ static const uint32_t wallCategory = 0x1 << 1;
 - (void)startWalls
 {
     int randomSeed = [Common getRandomNumberBetween:25 to:(screenWidth / 2 - 25)];
-    //int randomSeed = 283;
-    //NSLog(@"Random seed: %i", randomSeed);
-    SKSpriteNode* firstWall = [self makeWallWithWidth:randomSeed];
-    SKSpriteNode* firstSisterWall = [self makeWallWithWidth:screenWidth - (randomSeed + screenWidth / 2)];
+
+    WallSprite* firstWall = [[WallSprite alloc] initWithWallWidth:randomSeed];
+    WallSprite* firstSisterWall = [[WallSprite alloc] initWithWallWidth:screenWidth - (randomSeed + screenWidth / 2)];
 
     firstWall.position = CGPointMake(firstWall.size.width / 2, WALL_HEIGHT / 2);
     firstSisterWall.position = CGPointMake(screenWidth - (firstSisterWall.size.width / 2), WALL_HEIGHT / 2);
@@ -126,7 +126,6 @@ static const uint32_t wallCategory = 0x1 << 1;
     [self addChild:firstSisterWall];
 
     for (int i = 1; i < screenHeight / WALL_HEIGHT; i++) {
-        //NSLog(@"Make block %i", i);
         [self addWallsAtLastWalls:i];
     }
 }
@@ -136,16 +135,14 @@ static const uint32_t wallCategory = 0x1 << 1;
 
     float nextWidth = [Common getRandomNumberBetween:previousWall.size.width - WALL_DELTA to:previousWall.size.width + WALL_DELTA];
     if (nextWidth >= screenWidth / 2) {
-        //NSLog(@"1: nextWidth: %f", nextWidth);
         nextWidth = (screenWidth / 2 - WALL_DELTA);
     } else if (nextWidth < WALL_DELTA) {
-        //NSLog(@"2: nextWidth: %f", nextWidth);
         nextWidth = WALL_DELTA;
     }
     float nextSisterWidth = screenWidth - (nextWidth + screenWidth / 2); //nextX+screenWidth/2;
 
-    SKSpriteNode* nextWall = [self makeWallWithWidth:nextWidth];
-    SKSpriteNode* nextSisterWall = [self makeWallWithWidth:nextSisterWidth];
+    WallSprite* nextWall = [[WallSprite alloc] initWithWallWidth:nextWidth];
+    WallSprite* nextSisterWall = [[WallSprite alloc] initWithWallWidth:nextSisterWidth];
 
     float nextY = (index * WALL_HEIGHT) + (WALL_HEIGHT / 2);
 
@@ -157,16 +154,6 @@ static const uint32_t wallCategory = 0x1 << 1;
     [self addChild:nextSisterWall];
     [self addChild:nextWall];
     self.numWallsAdded++;
-}
-- (SKSpriteNode*)makeWallWithWidth:(float)wallWidth
-{
-    SKSpriteNode* wall = [SKSpriteNode spriteNodeWithColor:[Common getRandomColor] size:CGSizeMake(wallWidth, WALL_HEIGHT)];
-    wall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:wall.size];
-    wall.physicsBody.categoryBitMask = wallCategory;
-    wall.physicsBody.collisionBitMask = 0;
-    wall.physicsBody.dynamic = NO;
-    wall.name = wallCategoryName;
-    return wall;
 }
 
 #pragma mark physics contact delegate

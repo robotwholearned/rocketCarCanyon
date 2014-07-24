@@ -10,4 +10,6 @@
 
 @interface WallSprite : SKSpriteNode
 
+- (id) initWithWallWidth:(float)wallWidth;
+
 @end
