@@ -24,6 +24,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 @property (nonatomic) CFTimeInterval timeCounter;
 @property (nonatomic) BOOL isTouchingCar;
 @property (nonatomic) int distanceSurvived;
+@property (nonatomic) int numWallsAdded;
 
 @end
 
@@ -68,7 +69,7 @@ static const uint32_t wallCategory = 0x1 << 1;
         [self addChild:self.rocketCar];
 
         self.previousTime = 0;
-        self.distanceSurvived = 0;
+        self.numWallsAdded = 0;
     }
     return self;
 }
@@ -145,7 +146,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 {
     int randomSeed = [self getRandomNumberBetween:25 to:(screenWidth / 2 - 25)];
     //int randomSeed = 283;
-    NSLog(@"Random seed: %i", randomSeed);
+    //NSLog(@"Random seed: %i", randomSeed);
     SKSpriteNode* firstWall = [self makeWallWithWidth:randomSeed];
     SKSpriteNode* firstSisterWall = [self makeWallWithWidth:screenWidth - (randomSeed + screenWidth / 2)];
 
@@ -169,10 +170,10 @@ static const uint32_t wallCategory = 0x1 << 1;
 
     float nextWidth = [self getRandomNumberBetween:previousWall.size.width - WALL_DELTA to:previousWall.size.width + WALL_DELTA];
     if (nextWidth >= screenWidth / 2) {
-        NSLog(@"1: nextWidth: %f", nextWidth);
+        //NSLog(@"1: nextWidth: %f", nextWidth);
         nextWidth = (screenWidth / 2 - WALL_DELTA);
     } else if (nextWidth < WALL_DELTA) {
-        NSLog(@"2: nextWidth: %f", nextWidth);
+        //NSLog(@"2: nextWidth: %f", nextWidth);
         nextWidth = WALL_DELTA;
     }
     float nextSisterWidth = screenWidth - (nextWidth + screenWidth / 2); //nextX+screenWidth/2;
@@ -189,7 +190,7 @@ static const uint32_t wallCategory = 0x1 << 1;
     [self.sisterWalls addObject:nextSisterWall];
     [self addChild:nextSisterWall];
     [self addChild:nextWall];
-    self.distanceSurvived++;
+    self.numWallsAdded++;
 }
 - (SKSpriteNode*)makeWallWithWidth:(float)wallWidth
 {

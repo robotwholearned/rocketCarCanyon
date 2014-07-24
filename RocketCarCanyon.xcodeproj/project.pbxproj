@@ -35,6 +35,7 @@
 		E30B9571194785D900648C19 /* CountlyDB.m in Sources */ = {isa = PBXBuildFile; fileRef = E30B956D194785D900648C19 /* CountlyDB.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E30B95731947860500648C19 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30B95721947860400648C19 /* CoreData.framework */; };
 		E30B95761947890400648C19 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30B95751947890400648C19 /* Crashlytics.framework */; };
+		E329B94B198164E90076D427 /* WallSpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E329B94A198164E90076D427 /* WallSpriteNode.m */; };
 		F062EEFA18E5CC23009D052A /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F062EEF918E5CC23009D052A /* MenuScene.m */; };
 		F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE318A7171F00DC6258 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,8 @@
 		E30B956D194785D900648C19 /* CountlyDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyDB.m; sourceTree = "<group>"; };
 		E30B95721947860400648C19 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E30B95751947890400648C19 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		E329B949198164E90076D427 /* WallSpriteNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallSpriteNode.h; sourceTree = "<group>"; };
+		E329B94A198164E90076D427 /* WallSpriteNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallSpriteNode.m; sourceTree = "<group>"; };
 		F062EEF818E5CC23009D052A /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		F062EEF918E5CC23009D052A /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,6 +179,8 @@
 				F062EEF918E5CC23009D052A /* MenuScene.m */,
 				53F71CFA18A7171F00DC6258 /* MyScene.h */,
 				53F71CFB18A7171F00DC6258 /* MyScene.m */,
+				E329B949198164E90076D427 /* WallSpriteNode.h */,
+				E329B94A198164E90076D427 /* WallSpriteNode.m */,
 				53C1EDD6197DC7BA00BB221F /* GameOverScene.h */,
 				53C1EDD7197DC7BA00BB221F /* GameOverScene.m */,
 				53F71CFF18A7171F00DC6258 /* Images.xcassets */,
@@ -349,6 +354,7 @@
 				53C1EDD8197DC7BA00BB221F /* GameOverScene.m in Sources */,
 				53F71CF018A7171F00DC6258 /* AppDelegate.m in Sources */,
 				E30B9571194785D900648C19 /* CountlyDB.m in Sources */,
+				E329B94B198164E90076D427 /* WallSpriteNode.m in Sources */,
 				E30B956F194785D900648C19 /* Countly.m in Sources */,
 				E30B956E194785D900648C19 /* Countly_OpenUDID.m in Sources */,
 				E30B9570194785D900648C19 /* Countly.xcdatamodeld in Sources */,
