@@ -13,7 +13,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "Common.h"
+    #import <NewRelicAgent/NewRelic.h>
+    #import "Countly.h"
 #endif
 
-#import <NewRelicAgent/NewRelic.h>
-#import "Countly.h"
