@@ -9,6 +9,7 @@
 #import "MyScene.h"
 #import "GameOverScene.h"
 #import "WallSprite.h"
+#import "RocketCarSprite.h"
 
 const float WALL_DELTA = 10;
 
@@ -53,19 +54,12 @@ static const uint32_t wallCategory = 0x1 << 1;
         SKSpriteNode* verticalEquator = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(2, screenHeight)];
         verticalEquator.position = CGPointMake(screenWidth / 2, verticalEquator.size.height / 2);
         [self addChild:verticalEquator];
-
-        self.rocketCar = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(25, 25)];
+        
+        self.rocketCar = [[RocketCarSprite alloc] init];
+        
         float rocketCarStartX = (((SKSpriteNode*)self.sisterWalls[0]).position.x + ((SKSpriteNode*)self.walls[0]).position.x) / 2;
         self.rocketCar.position = CGPointMake(rocketCarStartX, (CGRectGetMinY(self.frame) + self.rocketCar.size.height));
-        self.rocketCar.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rocketCar.size];
-        self.rocketCar.physicsBody.categoryBitMask = rocketCarCategory;
-        self.rocketCar.physicsBody.contactTestBitMask = wallCategory;
-        self.rocketCar.physicsBody.collisionBitMask = wallCategory;
-
-        self.rocketCar.physicsBody.linearDamping = 0.0f;
-        self.rocketCar.physicsBody.allowsRotation = NO;
-        self.rocketCar.name = rocketCarCategoryName;
-
+        
         [self addChild:self.rocketCar];
 
         self.previousTime = 0;
