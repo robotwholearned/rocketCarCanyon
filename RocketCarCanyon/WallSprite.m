@@ -8,9 +8,6 @@
 
 #import "WallSprite.h"
 
-
-const float WALL_HEIGHT = 15.0;
-
 @implementation WallSprite
 
 - (id) initWithWallWidth:(float)wallWidth {

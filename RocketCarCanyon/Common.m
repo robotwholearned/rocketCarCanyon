@@ -11,6 +11,7 @@
 @implementation Common
 
 NSString *SiteApiURL = @"http://api.service.com";
+const float WALL_HEIGHT = 15.0;
 
 
 +(int)getRandomNumberBetween:(int)from to:(int)to

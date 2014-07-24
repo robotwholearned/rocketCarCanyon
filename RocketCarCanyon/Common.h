@@ -11,6 +11,7 @@
 @interface Common : NSObject
 
 extern NSString *SiteApiURL;
+extern const float WALL_HEIGHT;
 
 +(int)getRandomNumberBetween:(int)from to:(int)to;
 +(UIColor*)getRandomColor;
