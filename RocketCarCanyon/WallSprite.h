@@ -1,5 +1,5 @@
 //
-//  WallSpriteNode.h
+//  WallSprite.h
 //  RocketCarCanyon
 //
 //  Created by Sandquist, Cassandra G on 7/24/14.
@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface WallSpriteNode : SKSpriteNode
+@interface WallSprite : SKSpriteNode
 
 @end
