@@ -111,7 +111,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 }
 - (void)startWalls
 {
-    int randomSeed = [self getRandomNumberBetween:25 to:(screenWidth / 2 - 25)];
+    int randomSeed = [Common getRandomNumberBetween:25 to:(screenWidth / 2 - 25)];
     //int randomSeed = 283;
     //NSLog(@"Random seed: %i", randomSeed);
     SKSpriteNode* firstWall = [self makeWallWithWidth:randomSeed];
@@ -135,7 +135,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 {
     SKSpriteNode* previousWall = self.walls[index - 1];
 
-    float nextWidth = [self getRandomNumberBetween:previousWall.size.width - WALL_DELTA to:previousWall.size.width + WALL_DELTA];
+    float nextWidth = [Common getRandomNumberBetween:previousWall.size.width - WALL_DELTA to:previousWall.size.width + WALL_DELTA];
     if (nextWidth >= screenWidth / 2) {
         //NSLog(@"1: nextWidth: %f", nextWidth);
         nextWidth = (screenWidth / 2 - WALL_DELTA);
@@ -161,7 +161,7 @@ static const uint32_t wallCategory = 0x1 << 1;
 }
 - (SKSpriteNode*)makeWallWithWidth:(float)wallWidth
 {
-    SKSpriteNode* wall = [SKSpriteNode spriteNodeWithColor:[self getRandomColor] size:CGSizeMake(wallWidth, WALL_HEIGHT_DYNAMIC)];
+    SKSpriteNode* wall = [SKSpriteNode spriteNodeWithColor:[Common getRandomColor] size:CGSizeMake(wallWidth, WALL_HEIGHT_DYNAMIC)];
     wall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:wall.size];
     wall.physicsBody.categoryBitMask = wallCategory;
     wall.physicsBody.collisionBitMask = 0;
@@ -224,19 +224,5 @@ static const uint32_t wallCategory = 0x1 << 1;
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
     self.isTouchingCar = NO;
-}
-
-#pragma mark helper methods
-- (int)getRandomNumberBetween:(int)from to:(int)to
-{
-    return (int)from + arc4random() % (to - from + 1);
-}
-- (UIColor*)getRandomColor
-{
-    CGFloat hue = (arc4random() % 256 / 256.0); //  0.0 to 1.0
-    CGFloat saturation = (arc4random() % 128 / 256.0) + 0.5; //  0.5 to 1.0, away from white
-    CGFloat brightness = (arc4random() % 128 / 256.0) + 0.5; //  0.5 to 1.0, away from black
-    
-    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 @end
