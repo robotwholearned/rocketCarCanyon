@@ -102,20 +102,22 @@ static const uint32_t wallCategory = 0x1 << 1;
 }
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
-    if (self.isTouchingCar) {
-        UITouch* touch = [touches anyObject];
-        CGPoint location = [touch locationInNode:self];
-        CGPoint previousLocation = [touch previousLocationInNode:self];
-
-        SKSpriteNode* rocketCar = (SKSpriteNode*)[self childNodeWithName:rocketCarCategoryName];
-
-        int rocketCarX = rocketCar.position.x + (location.x - previousLocation.x);
-
-        rocketCarX = MAX(rocketCarX, rocketCar.size.width / 2);
-        rocketCarX = MIN(rocketCarX, self.size.width - rocketCar.size.width / 2);
-
-        rocketCar.position = CGPointMake(rocketCarX, rocketCar.position.y);
-    }
+    UITouch* touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    CGPoint previousLocation = [touch previousLocationInNode:self];
+    
+    SKSpriteNode* rocketCar = (SKSpriteNode*)[self childNodeWithName:rocketCarCategoryName];
+    
+    int rocketCarX = rocketCar.position.x + (location.x - previousLocation.x);
+    int rocketCarY = rocketCar.position.y + (location.y - previousLocation.y);
+    
+    rocketCarX = MAX(rocketCarX, rocketCar.size.width / 2);
+    rocketCarX = MIN(rocketCarX, self.size.width - rocketCar.size.width / 2);
+    
+    rocketCarY = MAX(rocketCarY, rocketCar.size.height/2);
+    rocketCarY = MIN(rocketCarY, self.size.height-rocketCar.size.height/2);
+    
+    rocketCar.position = CGPointMake(rocketCarX, rocketCarY);
 }
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
