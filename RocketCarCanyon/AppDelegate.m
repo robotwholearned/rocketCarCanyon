@@ -17,7 +17,7 @@
     // Override point for customization after application launch.
     [[Countly sharedInstance] start:@"fd9d4427cf45796427e7fb3adcee7f820cc5a1c6" withHost:@"https://cloud.count.ly"];
 
-    [NewRelicAgent startWithApplicationToken:@"AAdf87ff451b22d55ca506c773725b39e77adf29cc"];
+//    [NewRelicAgent startWithApplicationToken:@"AAdf87ff451b22d55ca506c773725b39e77adf29cc"];
 
     [Crashlytics startWithAPIKey:@"5d801201aed5f282b1fe462f1c8e746a937aca9d"];
     [[Countly sharedInstance] startOnCloudWithAppKey:@"7ecf6ab7af01aa1a73702fff5e15c8be6f8a765f"];

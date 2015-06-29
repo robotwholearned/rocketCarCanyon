@@ -39,6 +39,7 @@
 		E329B954198180150076D427 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E329B953198180150076D427 /* Common.m */; };
 		E329B957198186E00076D427 /* RocketCarSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = E329B956198186E00076D427 /* RocketCarSprite.m */; };
 		F062EEFA18E5CC23009D052A /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F062EEF918E5CC23009D052A /* MenuScene.m */; };
+		F08266791B40D4A9005632DF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F08266781B40D4A9005632DF /* Fabric.framework */; };
 		F08284B618D8BE0300188298 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F71CE318A7171F00DC6258 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		E329B956198186E00076D427 /* RocketCarSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketCarSprite.m; sourceTree = "<group>"; };
 		F062EEF818E5CC23009D052A /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		F062EEF918E5CC23009D052A /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		F08266781B40D4A9005632DF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				535A8DF618EB3776000F9B4B /* SystemConfiguration.framework in Frameworks */,
 				53F71CE218A7171F00DC6258 /* UIKit.framework in Frameworks */,
 				E30B95761947890400648C19 /* Crashlytics.framework in Frameworks */,
+				F08266791B40D4A9005632DF /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +159,7 @@
 		53F71CDC18A7171F00DC6258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F08266781B40D4A9005632DF /* Fabric.framework */,
 				E30B95751947890400648C19 /* Crashlytics.framework */,
 				E30B95721947860400648C19 /* CoreData.framework */,
 				535A8DF718EB3788000F9B4B /* libz.dylib */,
